@@ -26,8 +26,8 @@ void check_cs(int &num) {
 }
 
 int to_true(int num) {
-    bool zero_bit = num & 0b00001000;  // наш нулевой бит, который сейчас второй
-    num = (num & 0b11100000 >> 4) | zero_bit;
+    bool zero_bit = (num >> 3) & 1;  // наш нулевой бит, который сейчас третий
+    num = (num >> 4 & 0b00001111) | zero_bit;
     return num;
 }
 
