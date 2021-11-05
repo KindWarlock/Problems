@@ -1,7 +1,5 @@
 #include "Rational.h"
 
-using namespace std;
-
 //Конструкторы
 Rational::Rational() {
 	numer = 0;
@@ -79,7 +77,8 @@ Rational Rational::operator /(const Rational& r) const {
 }
 
 Rational Rational::sq() {
-	/* итерационная формула Герона
+	/* 
+	итерационная формула Герона
 	 Rational prev(*this);
 	for (int i = 1; i < 6; i++) {
 		prev = Rational(1, 2) * (prev + *this / prev);
@@ -89,8 +88,10 @@ Rational Rational::sq() {
 	*/
 	double sq = sqrt((double)numer/denom);
 	int n_mod = 1;
-	while (!trunc(sq) == sq) {
-		sq /= 10;
+	for (int i = 0; i < 5; i++) {
+		if (trunc(sq) == sq)
+			break;
+		sq *= 10;
 		n_mod *= 10;
 	}
 	Rational sqed(sq, n_mod);
@@ -145,7 +146,7 @@ std::istream& operator >>(std::istream& in, Rational& r) {
 	return in;
 }
 
-std::ostream& operator <<(std::ostream& out, Rational& r) {
+std::ostream& operator <<(std::ostream& out, const Rational& r) {
 	out << r.numer << '/' << r.denom;
 	return out;
 }
