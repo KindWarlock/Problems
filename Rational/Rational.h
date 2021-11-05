@@ -26,7 +26,7 @@ public:
 	bool operator <(const Rational& r) const;
 	bool operator <=(const Rational& r) const;
 	bool operator ==(const Rational& r) const;
-	Rational sqrt();
+	Rational sq();
 
 	friend std::istream& operator >>(std::istream& in, Rational& r);
 	friend std::ostream& operator <<(std::ostream& out, const Rational& r);

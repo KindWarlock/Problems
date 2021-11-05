@@ -78,7 +78,7 @@ Rational Rational::operator /(const Rational& r) const {
 	return res;
 }
 
-Rational Rational::sqrt() {
+Rational Rational::sq() {
 	/* итерационная формула Герона
 	 Rational prev(*this);
 	for (int i = 1; i < 6; i++) {

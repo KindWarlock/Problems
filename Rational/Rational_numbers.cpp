@@ -24,7 +24,7 @@ int main()
     else 
         cout << a << " = " << b << endl;
 
-    cout << "Sqrt a: " << a.sqrt() << endl;
-    cout << "Sqrt b: " << b.sqrt() << endl;
+    cout << "Sqrt a: " << a.sq() << endl;
+    cout << "Sqrt b: " << b.sq() << endl;
     return 0;
 }
