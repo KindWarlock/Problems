@@ -78,14 +78,24 @@ Rational Rational::operator /(const Rational& r) const {
 	return res;
 }
 
-Rational Rational::sq() {
-	Rational prev(*this);
-	// итерационная формула Герона
+Rational Rational::sqrt() {
+	/* итерационная формула Герона
+	 Rational prev(*this);
 	for (int i = 1; i < 6; i++) {
 		prev = Rational(1, 2) * (prev + *this / prev);
 		prev.simplify();
 	}
 	return prev;
+	*/
+	double sq = sqrt((double)numer/denom);
+	int n_mod = 1;
+	while (!trunc(sq) == sq) {
+		sq /= 10;
+		n_mod *= 10;
+	}
+	Rational sqed(sq, n_mod);
+	sqed.simplify();
+	return sqed;
 }
 
 bool Rational::operator >(const Rational& r) const {
