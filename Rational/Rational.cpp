@@ -9,6 +9,9 @@ Rational::Rational() {
 Rational::Rational(int a, int b) {
 	numer = a;
 	denom = b;
+	if (b == 0) {
+		throw std::domain_error("division by 0");
+	}
 }
 
 Rational::Rational(int number) {
@@ -88,6 +91,8 @@ Rational Rational::sq() {
 	*/
 	double sq = sqrt((double)numer/denom);
 	int n_mod = 1;
+
+	//add intmax check
 	for (int i = 0; i < 5; i++) {
 		if (trunc(sq) == sq)
 			break;
@@ -97,6 +102,15 @@ Rational Rational::sq() {
 	Rational sqed(sq, n_mod);
 	sqed.simplify();
 	return sqed;
+}
+
+std::pair<Rational, Rational> Rational::DecideEquation(const Rational& a, const Rational& b, const Rational& c)
+{
+	Rational D = b * b - Rational(4) * a * c;
+	Rational x1 = (-b + D.sq()) / (a + a);
+	Rational x2 = (-b - D.sq()) / (a + a);
+	std::pair<Rational, Rational> x = std::make_pair(x1, x2);
+	return x;
 }
 
 bool Rational::operator >(const Rational& r) const {
