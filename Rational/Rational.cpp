@@ -107,6 +107,8 @@ Rational Rational::sq() {
 std::pair<Rational, Rational> Rational::DecideEquation(const Rational& a, const Rational& b, const Rational& c)
 {
 	Rational D = b * b - Rational(4) * a * c;
+	if (D < 0)
+		throw std::range_error("D < 0");
 	Rational x1 = (-b + D.sq()) / (a + a);
 	Rational x2 = (-b - D.sq()) / (a + a);
 	std::pair<Rational, Rational> x = std::make_pair(x1, x2);

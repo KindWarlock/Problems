@@ -17,11 +17,17 @@ int main()
     }
     catch (domain_error e) {
         cout << "ERROR: " << e.what();
-        return 0;
+        return -1;
     }
     Rational a(a1, a2), b(b1, b2), c(c1, c2);
-    auto [x1, x2] = Rational::DecideEquation(a, b, c);
-    cout << "x1: " << x1 << "\nx2: " << x2;
+    try {
+        auto [x1, x2] = Rational::DecideEquation(a, b, c);
+        cout << "x1: " << x1 << "\nx2: " << x2;
+    }
+    catch (range_error e) {
+        cout << "ERROR: " << e.what();
+        return -1;
+    }
     /*
     cin >> a1 >> a2 >> b1 >> b2;
     Rational a(a1, a2), b(b1, b2);
