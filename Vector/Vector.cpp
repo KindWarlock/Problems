@@ -9,29 +9,24 @@ int main()
 	//инициализация вектора с превыщением capacity по умолчанию
 	for (int i = 0; i <= 33; i++) {
 		vec.insert(i);
-		cout << vec[i] << ' ';
 	}
-	cout << endl;
+	cout << vec;
+
+	int i[3] = { 100, 101, 102 };
+	vec.insert(i, 3, 30);
+	cout << vec;
 	
 	//удаление элемента
 	vec.remove(30);
-	for (int i = 0; i < vec.getSize(); i++) {
-		cout << vec[i] << ' ';
-	}
-	cout << endl;
+	cout << vec;
 
 	//конструктор копирования
 	Array vec_new(vec);
 	vec_new.insert(vec_new.getSize());
-	for (int i = 0; i < vec_new.getSize(); i++) {
-		cout << vec_new[i] << ' ';
-	}
-	cout << endl;
+	cout << vec;
 
 	//копирование
 	vec_new = vec;
-	for (int i = 0; i < vec_new.getSize(); i++) {
-		cout << vec_new[i] << ' ';
-	}
+	cout << vec;
 	return 0;
 }

@@ -71,6 +71,10 @@ void Array::insert(int num, int index) {
 
 		if (size == capacity)
 			expand();
+		if (index != size)
+			for (int i = size; i > index; i--) {
+				ptr[i] = ptr[i - 1];
+			}
 		ptr[index] = num;
 		size++;
 	}
@@ -81,6 +85,20 @@ void Array::insert(int num, int index) {
 
 void Array::insert(int num) {
 	insert(num, size);
+}
+
+void Array::insert(int* num, int arr_size)
+{
+	for (int i = 0; i < arr_size; i++) {
+		insert(num[i]);
+	}
+}
+
+void Array::insert(int* num, int arr_size, int index)
+{
+	for (int i = 0; i < arr_size; i++) {
+		insert(num[i], index + i);
+	}
 }
 
 void Array::remove(int index)
@@ -106,4 +124,13 @@ void Array::remove(int index)
 int Array::getSize()
 {
 	return size;
+}
+
+std::ostream& operator<<(std::ostream& out, Array& vec)
+{
+	for (int i = 0; i < vec.size; i++) {
+		out << vec[i] << ' ';
+	}
+	out << endl;
+	return out;
 }

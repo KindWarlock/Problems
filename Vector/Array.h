@@ -25,8 +25,11 @@ public:
 	void expand(int diffCap=EXPAND_CAPACITY);
 	void insert(int num);
 	void insert(int num, int index);
+	void insert(int* num, int arr_size);
+	void insert(int* num, int arr_size, int index);
 	
 	int getSize();
 	void remove(int index);
+	friend std::ostream& operator <<(std::ostream& out, Array &vec);
 };
 
