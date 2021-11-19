@@ -11,7 +11,8 @@ int main()
 		vec.insert(i);
 	}
 	cout << vec;
-
+	
+	//вставка массива
 	int i[3] = { 100, 101, 102 };
 	vec.insert(i, 3, 30);
 	cout << vec;
