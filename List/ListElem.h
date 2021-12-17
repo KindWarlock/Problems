@@ -10,7 +10,7 @@ public:
 	template <class T> friend class List;
 };
 
-template<class T> 
+template<class T>
 inline ListElem<T>::ListElem(const T& add_content, ListElem* add_next)
 {
 	content = add_content;

@@ -44,8 +44,9 @@ inline List<T>::List(const List& list)
 template<class T>
 inline List<T>::~List()
 {
-	while (start)
+	while (start) {
 		deleteFirst();
+	}
 }
 
 template<class T>
@@ -58,7 +59,7 @@ template<class T>
 inline void List<T>::deleteFirst()
 {
 	ListElem<T>* tmp = start->next;
-	delete(start);
+	delete start;
 	start = tmp;
 }
 
@@ -66,7 +67,10 @@ template<class T>
 inline void List<T>::deleteAfter(ListElem<T>* ptr)
 {
 	ListElem<T>* tmp = ptr->next->next;
-	delete(ptr->next);
+	if (ptr->next == getStart()) {
+		start = ptr;
+	}
+	delete ptr->next;
 	ptr->next = tmp;
 }
 
