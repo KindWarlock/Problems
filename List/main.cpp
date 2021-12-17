@@ -22,14 +22,12 @@ int main() {
 	for (int i = 2; i < people_num; i++) {
 		elem_ptr = alive_people.insertAfter(elem_ptr, i);
 	}
-	alive_people.deleteFirst();
-	elem_ptr = alive_people.insertAfter(elem_ptr, true, alive_people.getStart());
-	for (int i = people_num - 1; i > 1; i--) {
+	elem_ptr = alive_people.insertAfter(elem_ptr, people_num, alive_people.getStart());
+	for (int i = people_num; i > 1; i--) {
 		for (int k = 0; k < killing_order - 1; k++) {
 			elem_ptr = elem_ptr->GetNext();
 		}
 		alive_people.deleteAfter(elem_ptr);
 	}
-	std::cout << alive_people.getStart()->GetData();
-	return 0;
+	std::cout << elem_ptr->GetData();
 }
