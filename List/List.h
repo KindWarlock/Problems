@@ -10,11 +10,15 @@ public:
 	List(const List& list);
 	List& operator=(const List& list);
 	~List();
+
 	ListElem<T>* getStart();
+
 	void deleteFirst();
 	void deleteAfter(ListElem<T>* ptr);
 	void insertFirst(const T& data);
 	ListElem<T>* insertAfter(ListElem<T>* ptr, const T& data);
+	ListElem<T>* insertAfter(ListElem<T>* ptr, const T& data, ListElem<T>* nxt);
+
 	template <class T> friend std::ostream& operator <<(std::ostream& out, List<T>& list);
 };
 
@@ -77,6 +81,14 @@ template<class T>
 inline ListElem<T>* List<T>::insertAfter(ListElem<T>* ptr, const T& data)
 {
 	ListElem<T>* new_elem = new ListElem<T>(data, ptr->next);
+	ptr->next = new_elem;
+	return new_elem;
+}
+
+template<class T>
+inline ListElem<T>* List<T>::insertAfter(ListElem<T>* ptr, const T& data, ListElem<T>* nxt)
+{
+	ListElem<T>* new_elem = new ListElem<T>(data, nxt);
 	ptr->next = new_elem;
 	return new_elem;
 }

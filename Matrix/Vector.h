@@ -30,7 +30,7 @@ public:
 	
 	int getSize();
 	void remove(int index);
-	friend std::ostream& operator <<(std::ostream& out, Vector &vec);
+	template <class R> friend std::ostream& operator <<(std::ostream& out, Vector<R> &vec);
 };
 
 template<class T> 
@@ -61,7 +61,7 @@ inline Vector<T>::~Vector()
 }
 
 template<class T> 
-inline Vector& Vector<T>::operator= (const Vector& arr) {
+inline Vector<T>& Vector<T>::operator= (const Vector& arr) {
 	if (size < arr.size) {
 		delete[] ptr;
 		if (capacity < arr.capacity) {
@@ -168,9 +168,10 @@ inline int Vector<T>::getSize()
 	return size;
 }
 
-std::ostream& operator<<(std::ostream& out, Vector& vec)
+template <typename T>
+std::ostream& operator<<(std::ostream& out, Vector<T>& vec)
 {
-	for (int i = 0; i < vec.size; i++) {
+	for (int i = 0; i < vec.getSize(); i++) {
 		out << vec[i] << ' ';
 	}
 	out << endl;
