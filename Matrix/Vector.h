@@ -9,31 +9,31 @@ const int EXPAND_CAPACITY = 10;
 
 template <class T> class Vector
 {
-	int *ptr;
+	T* ptr;
 	int size;
 	int capacity;
 
 public:
-	explicit Vector(int startSize=DEFAULT_SIZE);
+	explicit Vector(int startSize = DEFAULT_SIZE);
 	~Vector();
-	Vector(const Vector &arr);
+	Vector(const Vector& arr);
 
-	Vector& operator= (const Vector &arr);
-	int& operator[] (int index);
+	Vector& operator= (const Vector& arr);
+	T& operator[] (int index);
 
-	
-	void expand(int diffCap=EXPAND_CAPACITY);
-	void insert(int num);
-	void insert(int num, int index);
-	void insert(int* num, int arr_size);
-	void insert(int* num, int arr_size, int index);
-	
+
+	void expand(int diffCap = EXPAND_CAPACITY);
+	void insert(T &num);
+	void insert(T &num, int index);
+	void insert(T* &num, int arr_size);
+	void insert(T* &num, int arr_size, int index);
+
 	int getSize();
 	void remove(int index);
-	template <class R> friend std::ostream& operator <<(std::ostream& out, Vector<R> &vec);
+	template <class T> friend std::ostream& operator <<(std::ostream& out, Vector<T>& vec);
 };
 
-template<class T> 
+template<class T>
 inline Vector<T>::Vector(int startSize) {
 	if (startSize <= 0)
 		capacity = DEFAULT_SIZE;
@@ -43,10 +43,10 @@ inline Vector<T>::Vector(int startSize) {
 	size = 0;
 }
 
-template<class T> 
+template<class T>
 inline Vector<T>::Vector(const Vector& arr)
 {
-	ptr = new int[arr.capacity];
+	ptr = new T[arr.capacity];
 	size = arr.size;
 	capacity = arr.capacity;
 	for (int i = 0; i < size; i++) {
@@ -54,20 +54,20 @@ inline Vector<T>::Vector(const Vector& arr)
 	}
 }
 
-template<class T> 
+template<class T>
 inline Vector<T>::~Vector()
 {
 	delete[] ptr;
 }
 
-template<class T> 
-inline Vector<T>& Vector<T>::operator= (const Vector& arr) {
+template<class T>
+inline Vector<T>& Vector<T>::operator= (const Vector<T>& arr) {
 	if (size < arr.size) {
 		delete[] ptr;
 		if (capacity < arr.capacity) {
 			capacity = arr.capacity;
 		}
-		ptr = new int[capacity];
+		ptr = new T[capacity];
 	}
 	size = arr.size;
 	for (int i = 0; i < size; i++) {
@@ -76,8 +76,8 @@ inline Vector<T>& Vector<T>::operator= (const Vector& arr) {
 	return(*this);
 }
 
-template<class T> 
-inline int& Vector<T>::operator[](int index)
+template<class T>
+inline T& Vector<T>::operator[](int index)
 {
 	try {
 		if (index >= size || index < 0) {
@@ -90,10 +90,10 @@ inline int& Vector<T>::operator[](int index)
 	}
 }
 
-template<class T> 
+template<class T>
 inline void Vector<T>::expand(int diffCap)
 {
-	int* tmp = new int[capacity + diffCap];
+	T* tmp = new T[capacity + diffCap];
 	for (int i = 0; i < capacity; i++) {
 		tmp[i] = ptr[i];
 	}
@@ -102,8 +102,8 @@ inline void Vector<T>::expand(int diffCap)
 	capacity += diffCap;
 }
 
-template<class T> 
-inline void Vector<T>::insert(int num, int index) {
+template<class T>
+inline void Vector<T>::insert(T &num, int index) {
 	try {
 		if (index > size || index < 0) {
 			throw out_of_range("wrong index");
@@ -123,13 +123,13 @@ inline void Vector<T>::insert(int num, int index) {
 	}
 }
 
-template<class T> 
-inline void Vector<T>::insert(int num) {
+template<class T>
+inline void Vector<T>::insert(T &num) {
 	insert(num, size);
 }
 
-template<class T> 
-inline void Vector<T>::insert(int* num, int arr_size)
+template<class T>
+inline void Vector<T>::insert(T* &num, int arr_size)
 {
 	for (int i = 0; i < arr_size; i++) {
 		insert(num[i]);
@@ -137,7 +137,7 @@ inline void Vector<T>::insert(int* num, int arr_size)
 }
 
 template<class T>
-inline void Vector<T>::insert(int* num, int arr_size, int index)
+inline void Vector<T>::insert(T* &num, int arr_size, int index)
 {
 	for (int i = 0; i < arr_size; i++) {
 		insert(num[i], index + i);
@@ -152,7 +152,7 @@ inline void Vector<T>::remove(int index)
 			throw out_of_range("wrong index");
 		}
 		for (int i = index; i < size; i++) {
-			ptr[i] = ptr[i + 1];	
+			ptr[i] = ptr[i + 1];
 		}
 		size--;
 	}
