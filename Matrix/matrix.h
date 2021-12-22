@@ -1,10 +1,11 @@
 #include "Vector.h"
 class Matrix {
-    Vector<Vector<int>> rows;
+    Vector<Vector<int>> *rows;
 public:
-    Matrix(int rows_num=4, int cols_num=4);
-    ~Matrix();
-    void insertRow(Vector<int> row);
+    Matrix(int rows_num = 4, int cols_num = 4);
+    const Vector<int>& operator[] (int index);
+
+    /*void insertRow(Vector<int> row);
     void insertColumn(Vector<int> col);
     Matrix& operator +=(const Matrix m2);
     Matrix operator +(const Matrix m2) const;
@@ -19,4 +20,5 @@ public:
     //dilimiter
     //transpose
     //rank
+    friend std::ostream& operator <<(std::ostream& out, Matrix& mrx);*/
 };
