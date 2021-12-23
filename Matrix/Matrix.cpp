@@ -11,6 +11,10 @@ Matrix::Matrix(int rows_num, int cols_num) {
     }
 }
 
+Matrix::Matrix(Matrix& mrx) {
+
+}
+
 int Matrix::getRowsNum() {
 	return rows->getSize();
 }
@@ -51,9 +55,19 @@ bool Matrix::insertColumn(Vector<int> col) {
 	return true;
 }
 
+Matrix& Matrix::transpose() {
+	Matrix mrx(this);
+	for (int i = 0; i < rows->getSize(); i++) {
+		for (int k = i + 1; k < rows[i].getSize(); k++) {
+			(*rows)[i][k] = (*rows)[k][i];
+		}
+	}
+}
+
 std::ostream& operator <<(std::ostream& out, Matrix& mrx) {
 	for (int i = 0; i < mrx.getRowsNum(); i++) {
 		out << mrx[i];
 	}
 	return out;
 }
+

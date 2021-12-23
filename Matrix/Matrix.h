@@ -4,6 +4,7 @@ class Matrix {
 	bool inSize(bool col, int size);
 public:
     Matrix(int rows_num = 3, int cols_num = 3);
+	Matrix(Matrix& mrx);
     Vector<int>& operator[] (int index);
 	int getRowsNum();
 
@@ -20,7 +21,7 @@ public:
     Matrix& operator /=(const Matrix m2);
     Matrix operator /(const Matrix m2) const;
     //dilimiter
-    //transpose
     //rank*/
+	Matrix& transpose();
     friend std::ostream& operator <<(std::ostream& out, Matrix& mrx);
 };
