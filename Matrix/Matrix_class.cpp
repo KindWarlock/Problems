@@ -18,8 +18,11 @@ int main() {
 	test_m.insertColumn(test_col);
 	cout << test_m<< endl;
 	test_m.insertRow(test_row);
-	cout << test_m<< endl;
-	//ĞÀÁÎÒÀÅÒ
+	cout << test_m << endl;
+	
+	cout << "transposed: " << endl;
+	Matrix tr(test_m.transpose());
+	cout << tr;
 	system("pause");
     return 0;
 }

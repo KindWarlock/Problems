@@ -12,11 +12,23 @@ Matrix::Matrix(int rows_num, int cols_num) {
 }
 
 Matrix::Matrix(Matrix& mrx) {
+    int rows_num = mrx.getRowsNum();
+    rows = new Vector<Vector<int>>(rows_num);
+    for (int i = 0; i < rows_num; i++) {
+        rows->insert(mrx[i]);
+    }
+}
 
+Matrix::~Matrix() {
+    delete rows;
 }
 
 int Matrix::getRowsNum() {
 	return rows->getSize();
+}
+
+int Matrix::getColumnsNum() {
+	return rows[0].getSize();
 }
 
 Vector<int>& Matrix::operator[](int index)
@@ -55,13 +67,14 @@ bool Matrix::insertColumn(Vector<int> col) {
 	return true;
 }
 
-Matrix& Matrix::transpose() {
+Matrix Matrix::transpose() {
 	Matrix mrx(this);
-	for (int i = 0; i < rows->getSize(); i++) {
+	for (int i = 0; i < getRowsNum(); i++) {
 		for (int k = i + 1; k < rows[i].getSize(); k++) {
-			(*rows)[i][k] = (*rows)[k][i];
+			mrx[i][k] = (*rows)[k][i];
 		}
 	}
+    return mrx;
 }
 
 std::ostream& operator <<(std::ostream& out, Matrix& mrx) {

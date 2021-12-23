@@ -5,11 +5,13 @@ class Matrix {
 public:
     Matrix(int rows_num = 3, int cols_num = 3);
 	Matrix(Matrix& mrx);
-    Vector<int>& operator[] (int index);
-	int getRowsNum();
+    ~Matrix();
 
+    Vector<int>& operator[] (int index);
     bool insertRow(Vector<int> row);
     bool insertColumn(Vector<int> col);
+    int getRowsNum();
+    int getColumnsNum();
     /*Matrix& operator +=(const Matrix m2);
     Matrix operator +(const Matrix m2) const;
     Matrix& operator -=(const Matrix m2);
@@ -22,6 +24,6 @@ public:
     Matrix operator /(const Matrix m2) const;
     //dilimiter
     //rank*/
-	Matrix& transpose();
+	Matrix transpose();
     friend std::ostream& operator <<(std::ostream& out, Matrix& mrx);
 };
