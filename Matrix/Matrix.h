@@ -3,7 +3,7 @@ class Matrix {
     Vector<Vector<int>> *rows;
 public:
     Matrix(int rows_num = 4, int cols_num = 4);
-    const Vector<int>& operator[] (int index);
+    Vector<int>& operator[] (int index);
 
     /*void insertRow(Vector<int> row);
     void insertColumn(Vector<int> col);

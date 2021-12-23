@@ -7,7 +7,7 @@ Matrix::Matrix(int rows_num, int cols_num) {
     }
 }
 
-const Vector<int>& Matrix::operator[](int index)
+Vector<int>& Matrix::operator[](int index)
 {
     return rows[index];
 }

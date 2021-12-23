@@ -14,11 +14,11 @@ template <class T> class Vector
 	int capacity;
 
 public:
-	explicit Vector(int startSize = DEFAULT_SIZE);
-	~Vector();
-	Vector(const Vector& arr);
+	explicit Vector<T>(int startSize = DEFAULT_SIZE);
+	~Vector<T>();
+	Vector<T>(const Vector<T>& arr);
 
-	Vector& operator= (const Vector& arr);
+	Vector<T>& operator= (const Vector<T>& arr);
 	T& operator[] (int index);
 
 
@@ -30,7 +30,7 @@ public:
 
 	int getSize();
 	void remove(int index);
-	template <class T> friend std::ostream& operator <<(std::ostream& out, Vector<T>& vec);
+	template <class T1> friend std::ostream& operator <<(std::ostream& out, Vector<T1>& vec);
 };
 
 template<class T>
@@ -168,8 +168,8 @@ inline int Vector<T>::getSize()
 	return size;
 }
 
-template <typename T>
-std::ostream& operator<<(std::ostream& out, Vector<T>& vec)
+template <class T1>
+std::ostream& operator<<(std::ostream& out, Vector<T1>& vec)
 {
 	for (int i = 0; i < vec.getSize(); i++) {
 		out << vec[i] << ' ';
