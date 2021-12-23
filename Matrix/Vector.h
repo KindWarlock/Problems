@@ -23,10 +23,10 @@ public:
 
 
 	void expand(int diffCap = EXPAND_CAPACITY);
-	void insert(T &num);
-	void insert(T &num, int index);
-	void insert(T* &num, int arr_size);
-	void insert(T* &num, int arr_size, int index);
+	void insert(T num);
+	void insert(T num, int index);
+	void insert(T* num, int arr_size);
+	void insert(T* num, int arr_size, int index);
 
 	int getSize();
 	void remove(int index);
@@ -103,7 +103,7 @@ inline void Vector<T>::expand(int diffCap)
 }
 
 template<class T>
-inline void Vector<T>::insert(T &num, int index) {
+inline void Vector<T>::insert(T num, int index) {
 	try {
 		if (index > size || index < 0) {
 			throw out_of_range("wrong index");
@@ -124,12 +124,12 @@ inline void Vector<T>::insert(T &num, int index) {
 }
 
 template<class T>
-inline void Vector<T>::insert(T &num) {
+inline void Vector<T>::insert(T num) {
 	insert(num, size);
 }
 
 template<class T>
-inline void Vector<T>::insert(T* &num, int arr_size)
+inline void Vector<T>::insert(T* num, int arr_size)
 {
 	for (int i = 0; i < arr_size; i++) {
 		insert(num[i]);
@@ -137,7 +137,7 @@ inline void Vector<T>::insert(T* &num, int arr_size)
 }
 
 template<class T>
-inline void Vector<T>::insert(T* &num, int arr_size, int index)
+inline void Vector<T>::insert(T* num, int arr_size, int index)
 {
 	for (int i = 0; i < arr_size; i++) {
 		insert(num[i], index + i);
