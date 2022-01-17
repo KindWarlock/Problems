@@ -1,29 +1,39 @@
 #include "Vector.h"
+#include <iostream>
+#include <string>
 class Matrix {
-    Vector<Vector<int>> *rows;
-	bool inSize(bool col, int size);
+    Vector<Vector<double>>* rows;
+    bool inSize(bool col, int size);
+    //определитель для матрицы 2х2
+    double findDeterminant2() const;
+    //определитель для матрицы 3х3
+    double findDeterminant3() const;
 public:
-    Matrix(int rows_num = 3, int cols_num = 3);
-	Matrix(Matrix& mrx);
+    Matrix();
+    Matrix(int rows_num, int cols_num);
+    Matrix(const Matrix& mrx);
     ~Matrix();
 
-    Vector<int>& operator[] (int index);
-    bool insertRow(Vector<int> row);
-    bool insertColumn(Vector<int> col);
-    int getRowsNum();
-    int getColumnsNum();
-    /*Matrix& operator +=(const Matrix m2);
-    Matrix operator +(const Matrix m2) const;
-    Matrix& operator -=(const Matrix m2);
+    Vector<double>& operator[] (int index) const;
+    bool insertRow(Vector<double>& row);
+    bool insertColumn(Vector<double>& col);
+    int getRowsNum() const;
+    int getColumnsNum() const;
+    Matrix& transpose();
+    Matrix findMinor(int posY, int posX) const;
+    double findDeterminant() const;
+    Matrix reverse() const;
+    Matrix& operator =(const Matrix m2);
+    Matrix& operator +=(const Matrix& m2);
+    Matrix operator +(Matrix& m2) const;
+    Matrix operator -() const;
+    Matrix& operator -=(const Matrix& m2);
     Matrix operator -(const Matrix m2) const;
-    //matrix * int
-    Matrix& operator *=(const Matrix m2);
+    Matrix& operator *=(double a);
+    Matrix operator *(double a) const;
+    Matrix& operator *=(const Matrix& m2);
     Matrix operator *(const Matrix m2) const;
-    // reverse matrix
     Matrix& operator /=(const Matrix m2);
     Matrix operator /(const Matrix m2) const;
-    //dilimiter
-    //rank*/
-	Matrix transpose();
     friend std::ostream& operator <<(std::ostream& out, Matrix& mrx);
 };
